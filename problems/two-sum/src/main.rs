@@ -15,11 +15,17 @@ impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
         let mut map: HashMap<i32, usize> = HashMap::with_capacity(nums.len());
         for (index, value) in nums.iter().enumerate() {
-            map.insert(*value, index);
+            let duplicate_value_option = map.insert(*value, index);
+            if duplicate_value_option.is_some() {
+                if (*value) * 2 == target {
+                    let duplicate_value_index = duplicate_value_option.unwrap() as i32;
+                    return vec![duplicate_value_index , index as i32];
+                }
+            }
         }
 
         for (key, val) in map.iter() {
-            let other = target - *key;
+            let other = target - (*key);
             if map.contains_key(&other) {
                 let index1 = (*val) as i32;
                 let index2 = *(map.get(&other).unwrap()) as i32;
@@ -54,5 +60,12 @@ mod tests {
         let input = vec![3,3];
         let output = Solution::two_sum(input, 6);
         assert_eq!(output, [0,1]);
+    }
+
+    #[test]
+    fn test4() {
+        let input = vec![-1,-2,-3,-4,-5];
+        let output = Solution::two_sum(input, -8);
+        assert_eq!(output, [2,4]);
     }
 }
