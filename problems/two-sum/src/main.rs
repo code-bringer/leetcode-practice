@@ -29,7 +29,9 @@ impl Solution {
             if map.contains_key(&other) {
                 let index1 = (*val) as i32;
                 let index2 = *(map.get(&other).unwrap()) as i32;
-                return vec![std::cmp::min(index1, index2) , std::cmp::max(index1, index2)];
+                if index1 != index2 {
+                    return vec![std::cmp::min(index1, index2) , std::cmp::max(index1, index2)];
+                }
             }
         }
 
