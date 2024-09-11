@@ -1,0 +1,7 @@
+[package]
+name = "minimum-bit-flips-to-convert-number"
+description = "https://leetcode.com/problems/minimum-bit-flips-to-convert-number/description/"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
